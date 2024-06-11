@@ -17,8 +17,13 @@
                 center: {lat: 37.8719, lng: -122.2585} // Adjust the center as needed
             });
 
-            // Load GeoJSON. Assume the GeoJSON file is located in the same directory
-            map.data.loadGeoJson('your_data.geojson');
+            // Fetch and load GeoJSON data from Google Drive
+            fetch('https://drive.google.com/uc?export=download&id=1Vx89f9amNtLYCZOiKru5oH708sRl6Ia4')
+            .then(response => response.json())
+            .then(geojsonData => {
+                map.data.addGeoJson(geojsonData);
+            })
+            .catch(error => console.error('Error loading the GeoJSON data:', error));
 
             // Style the features.
             map.data.setStyle({
@@ -32,3 +37,4 @@
     <div id="map"></div>
 </body>
 </html>
+
