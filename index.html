@@ -11,47 +11,48 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACR-aAxGZc7lzIIXC_ou9jPdIyUn4QzHo&callback=initMap&libraries=&v=weekly" async defer></script>
     <script>
-function initMap() {
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10, // Adjust zoom level as needed to better view the points
-        center: {lat: 43.322294, lng: -3.105159} // Adjust center to focus on your GeoJSON data location
-    });
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10, // Adjust zoom level as needed to better view the points
+                center: {lat: 43.322294, lng: -3.105159} // Adjust center to focus on your GeoJSON data location
+            });
 
-    // Load GeoJSON. Assume the GeoJSON file is located in the same directory
-    map.data.loadGeoJson('"001.geojson"');
+            // Load GeoJSON. Assume the GeoJSON file is located in the same directory
+            map.data.loadGeoJson('001.geojson');
 
-    // Style the features based on properties.
-    map.data.setStyle(function(feature) {
-        // Retrieve properties from each feature
-        var color = feature.getProperty('fillColor');
-        var strokeColor = feature.getProperty('strokeColor');
-        var strokeWeight = feature.getProperty('strokeWeight');
-        var strokeOpacity = feature.getProperty('strokeOpacity');
-        
-        return {
-            icon: getCircleSymbol(color, strokeColor, strokeWeight, strokeOpacity)
-        };
-    });
-}
+            // Style the features based on properties.
+            map.data.setStyle(function(feature) {
+                // Retrieve properties from each feature
+                var color = feature.getProperty('fillColor') || 'green';
+                var strokeColor = feature.getProperty('strokeColor') || 'black';
+                var strokeWeight = feature.getProperty('strokeWeight') || 2;
+                var strokeOpacity = feature.getProperty('strokeOpacity') || 1.0;
+                
+                return {
+                    icon: getCircleSymbol(color, strokeColor, strokeWeight, strokeOpacity)
+                };
+            });
+        }
 
-// Function to create a styled circle symbol for point features
-function getCircleSymbol(color, strokeColor, strokeWeight, strokeOpacity) {
-    return {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: color,
-        fillOpacity: 0.8,
-        scale: 8, // Size of the circle
-        strokeColor: strokeColor,
-        strokeWeight: strokeWeight,
-        strokeOpacity: strokeOpacity
-    };
-}
+        // Function to create a styled circle symbol for point features
+        function getCircleSymbol(color, strokeColor, strokeWeight, strokeOpacity) {
+            return {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: color,
+                fillOpacity: 0.8,
+                scale: 8, // Size of the circle
+                strokeColor: strokeColor,
+                strokeWeight: strokeWeight,
+                strokeOpacity: strokeOpacity
+            };
+        }
     </script>
 </head>
 <body>
     <div id="map"></div>
 </body>
 </html>
+
 
 
 
