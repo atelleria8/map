@@ -5,7 +5,7 @@
     <style>
         /* Set the size of the map */
         #map {
-            height: 800px;
+            height: 400px;
             width: 100%;
         }
     </style>
@@ -17,8 +17,8 @@
                 center: {lat: 37.8719, lng: -122.2585} // Adjust the center as needed
             });
 
-            // Fetch and load GeoJSON data from Google Drive
-            fetch('https://drive.google.com/uc?export=download&id=1Vx89f9amNtLYCZOiKru5oH708sRl6Ia4')
+            // Fetch and load GeoJSON data from Google Drive via a proxy
+            fetch('https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=download&id=1Vx89f9amNtLYCZOiKru5oH708sRl6Ia4')
             .then(response => response.json())
             .then(geojsonData => {
                 map.data.addGeoJson(geojsonData);
@@ -37,5 +37,6 @@
     <div id="map"></div>
 </body>
 </html>
+
 
 
