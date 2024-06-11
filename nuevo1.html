@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GeoJSON Layer Example</title>
+    <style>
+        /* Set the size of the map */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACR-aAxGZc7lzIIXC_ou9jPdIyUn4QzHo&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: {lat: 37.8719, lng: -122.2585} // Adjust the center as needed
+            });
+
+            // Load GeoJSON. Assume the GeoJSON file is located in the same directory
+            map.data.loadGeoJson('your_data.geojson');
+
+            // Style the features.
+            map.data.setStyle({
+                fillColor: 'green',
+                strokeWeight: 1
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>
