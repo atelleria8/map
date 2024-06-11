@@ -9,7 +9,7 @@
             width: 100%;
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACR-aAxGZc7lzIIXC_ou9jPdIyUn4QzHo&callback=initMap&libraries=&v=weekly" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACR-aAxGZc7lzIIXC_ou9jPdIyUn4QzHo&callback=initMap&libraries=&v=weekly" async defer></script>
     <script>
         function initMap() {
             const map = new google.maps.Map(document.getElementById('map'), {
@@ -37,4 +37,5 @@
     <div id="map"></div>
 </body>
 </html>
+
 
